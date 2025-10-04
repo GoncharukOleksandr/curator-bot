@@ -1,0 +1,36 @@
+name: Python CI with Push
+
+on:
+  push:
+    branches:
+      - main  # або master
+  workflow_dispatch:
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests
+        run: pytest
+
+      - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.gith_TOKEN }}
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add .
+          git commit -m "Автоматичний пуш від GitHub Actions" || echo "No changes to commit"
+          git push https://$GITHUB_TOKEN@github.com/${{ github.repository }} HEAD:main

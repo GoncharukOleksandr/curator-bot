@@ -4,7 +4,7 @@ from aiogram.filters import Command
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, BotCommand
 import os
 
-API_TOKEN = os.getenv("API_TOKEN")
+API_TOKEN = os.getenv("gith_TOKEN")
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher()

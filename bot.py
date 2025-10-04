@@ -3,6 +3,7 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, BotCommand
 import os
+from aiogram import Bot
 
 API_TOKEN = os.getenv("gith_TOKEN")
 
